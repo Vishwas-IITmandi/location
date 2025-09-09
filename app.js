@@ -7,7 +7,13 @@ const socketio = require('socket.io');
 
 const server = http.createServer(app);
 
-const io = socketio(server);
+const io = socketio(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    },
+    transports: ['websocket', 'polling']
+});
 
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname,"public")));
@@ -32,6 +38,6 @@ app.get("/track",function(req,res){
 
 const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, function(){
+server.listen(PORT, '0.0.0.0', function(){
     console.log(`server is running on port ${PORT}`);
 });
