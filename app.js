@@ -33,5 +33,5 @@ app.get("/track",function(req,res){
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, function(){
-    console.log("server is running on port 3000");
+    console.log(`server is running on port ${PORT}`);
 });
